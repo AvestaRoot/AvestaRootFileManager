@@ -1,16 +1,22 @@
 package ir.avestaroot.my
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import ir.avestaroot.my.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private val fragmentNavigator by lazy { FragmentNavigator(supportFragmentManager, R.id.frag) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        init()
  
     }
+    private fun init() {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    fun Activity.mToast(str: String) = Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
+        fragmentNavigator.navigateTo(Fragments.Main)
+    }
+
 }
