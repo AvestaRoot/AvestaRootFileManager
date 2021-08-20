@@ -5,8 +5,15 @@
       <map>
         <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/activity_main_storage_item_layout.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/activity_search.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/activity_splash.xml" value="0.19635416666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/fragment_main.xml" value="0.19635416666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/backbutton_searchview_layout.xml" value="0.19635416666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/fragment_main.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/main_activity_media_viewholder.xml" value="0.19635416666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/main_activity_media_viewholder_binding.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/main_activity_storage_viewholder.xml" value="0.19635416666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/layout/main_activity_storage_viewholder_binding.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/menu/backbutton_menu.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AvestaRootFileManager/app/src/main/res/menu/fragment_main_menu.xml" value="0.19635416666666666" />
       </map>
     </option>

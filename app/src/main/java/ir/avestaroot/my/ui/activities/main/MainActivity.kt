@@ -1,12 +1,14 @@
-package ir.avestaroot.my
+package ir.avestaroot.my.ui.activities.main
 
-import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import ir.avestaroot.my.R
 import ir.avestaroot.my.databinding.ActivityMainBinding
+import ir.avestaroot.my.ui.activities.search.SearchActivity
+import ir.avestaroot.my.util.FragmentNavigator
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
-        initAppbar()
 
 
     }
@@ -27,16 +28,14 @@ class MainActivity : AppCompatActivity() {
             android.R.id.home -> {
 
             }
+
+            R.id.search -> {
+                val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun initAppbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -49,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fragmentNavigator.navigateTo(Fragments.Main)
+        fragmentNavigator.navigateTo(FragmentNavigator.Fragments.Main)
+        setSupportActionBar(binding.toolbar)
     }
 }
