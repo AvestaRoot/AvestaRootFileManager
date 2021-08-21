@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">AvestaRootFileManager</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="share">Share</string>
+    <string name="edit">Edit</string>
+    <string name="createFolder">Create folder</string>
+    <string name="sort">Sort</string>
+    <string name="storageAnalysis">Storage analysis</string>
+    <string name="settings">Settings</string>
+    <string name="ArFileManager">ARFileManager</string>
+    <string name="search">Search</string>
+    <string name="recentFiles">Recent Files</string>
+    <string name="categories">Categories</string>
+    <string name="see_whats_taking_up_space_in_your_storage">See what\'s taking up space in your storage</string>
+    <string name="images">Images</string>
+    <string name="videos">Videos</string>
+    <string name="audio">Audio</string>
+    <string name="documents">Documents</string>
+    <string name="downloads">Downloads</string>
+    <string name="installationsFiles">InstallationsFiles</string>
+    <string name="back">Back</string>
+</resources>
