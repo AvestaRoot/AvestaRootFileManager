@@ -2,6 +2,7 @@ package ir.avestaroot.my.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ir.avestaroot.my.R
 import ir.avestaroot.my.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
