@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:clickable="true"
+    android:id="@+id/relative_items"
     android:focusable="true"
     android:background="?android:attr/selectableItemBackground"
     android:layout_height="wrap_content">
@@ -31,7 +32,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/card_item"
-        android:text="Android"
+        android:text="@string/android"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
@@ -42,7 +43,7 @@
         android:layout_marginStart="15dp"
         android:layout_below="@id/name_fl_tv"
         android:layout_toEndOf="@id/card_item"
-        android:text="19 Agu 17:45" />
+        android:text="@string/date" />
 
 
     <TextView
@@ -52,7 +53,7 @@
         android:layout_centerInParent="true"
         android:layout_marginRight="22dp"
         android:layout_alignParentRight="true"
-        android:text="1 items" />
+        android:text="@string/items" />
 
     <View
         android:layout_width="match_parent"
