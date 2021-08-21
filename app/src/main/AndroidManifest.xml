@@ -10,13 +10,7 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.AvestaRootFileManager">
         <activity
-            android:name=".ui.activities.search.SearchActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activities.MainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activities.SplashActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
