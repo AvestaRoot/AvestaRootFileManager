@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ir.avestaroot.my.databinding.FragmentStorageBinding
 
 
-class StorageFragment : Fragment() {
+class ContentFragment : Fragment() {
     private lateinit var binding: FragmentStorageBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +52,7 @@ class StorageFragment : Fragment() {
             data.add(ItemsViewModel("Android", "19 Agu 1:30 " ,"1 items"))
 
 
-        val adapter = StorageAdapter(data)
+        val adapter = ContentAdapter(data)
 
         recyclerview.adapter = adapter
 
@@ -61,6 +61,6 @@ class StorageFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance() = StorageFragment()
+        fun newInstance() = ContentFragment()
     }
 }

@@ -3,32 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StorageFragment">
-
-    <LinearLayout
-        android:id="@+id/linear_location"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ir.avestaroot.my.CustomView
+        android:id="@+id/cv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_home_folder" />
-
-        <org.lucasr.twowayview.TwoWayView
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/rec_item_cv_location"/>
-    </LinearLayout>
-
+        android:layout_height="60dp"
+        app:title="This is the title"
+        app:icon="@drawable/ic_home_folder"
+        app:size="This is the size"
+        app:layout_constraintTop_toTopOf="parent"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/linear_location"
-        android:paddingStart="25dp" />
+        android:layout_below="@id/cv"
+        android:paddingStart="25dp"
+        tools:ignore="RtlSymmetry" />
 
 </RelativeLayout>

@@ -17,5 +17,5 @@ class FragmentNavigator(
 }
 
 enum class Fragments(val fragment: Fragment) {
-    Main(StorageFragment.newInstance())
+    Main(ContentFragment.newInstance())
 }
