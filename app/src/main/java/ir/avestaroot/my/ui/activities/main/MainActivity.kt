@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import ir.avestaroot.my.R
 import ir.avestaroot.my.databinding.ActivityMainBinding
 import ir.avestaroot.my.ui.activities.search.SearchActivity
@@ -14,17 +17,23 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val fragmentNavigator by lazy { FragmentNavigator(supportFragmentManager, R.id.frag) }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
 
+        //listeners and observers
+        viewModel.currentFragment.observe(this, currentFragmentChanged)
+    }
 
+    private val currentFragmentChanged = Observer<FragmentNavigator.Fragments> {
+        fragmentNavigator.navigateTo(it)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId) {
+        when (item.itemId) {
             android.R.id.home -> {
 
             }
