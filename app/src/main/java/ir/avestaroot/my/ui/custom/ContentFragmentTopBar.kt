@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import ir.avestaroot.my.databinding.CustomViewBinding
+import ir.avestaroot.my.databinding.ContentFragmentTopBarBinding
 
 class CustomView @JvmOverloads constructor(
     context: Context,
@@ -13,7 +13,7 @@ class CustomView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyle) {
 
     private val binding by lazy {
-        CustomViewBinding.inflate(
+        ContentFragmentTopBarBinding.inflate(
             LayoutInflater.from(context),
             this,
             true
