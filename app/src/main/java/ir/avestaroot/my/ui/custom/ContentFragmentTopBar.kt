@@ -1,10 +1,11 @@
-package ir.avestaroot.my
+package ir.avestaroot.my.ui.custom
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import ir.avestaroot.my.databinding.ContentFragmentTopBarBinding
+import ir.avestaroot.my.R
+import ir.avestaroot.my.databinding.ContentFragmentTopbarBinding
 
 class CustomView @JvmOverloads constructor(
     context: Context,
@@ -13,7 +14,7 @@ class CustomView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyle) {
 
     private val binding by lazy {
-        ContentFragmentTopBarBinding.inflate(
+        ContentFragmentTopbarBinding.inflate(
             LayoutInflater.from(context),
             this,
             true

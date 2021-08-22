@@ -1,13 +1,35 @@
 package ir.avestaroot.my.ui.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncDifferConfig
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ir.avestaroot.my.model.ContentItem
+import com.bumptech.glide.Glide
+import ir.avestaroot.my.data.model.ContentItem
 import ir.avestaroot.my.databinding.ItemStorageBinding
 
-class ContentRecyclerAdapter(private val mList: List<Long>) :
-    RecyclerView.Adapter<ContentRecyclerAdapter.ViewHolder>() {
+class ContentRecyclerAdapter() :
+    ListAdapter<ContentItem, ContentRecyclerAdapter.ViewHolder>(
+        AsyncDifferConfig.Builder(
+
+            object : DiffUtil.ItemCallback<ContentItem>() {
+                override fun areItemsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
+                    return oldItem.name == newItem.name
+                }
+
+                override fun areContentsTheSame(
+                    oldItem: ContentItem,
+                    newItem: ContentItem
+                ): Boolean {
+                    return oldItem.equals(newItem)
+                }
+            }
+
+        ).build()
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -18,10 +40,7 @@ class ContentRecyclerAdapter(private val mList: List<Long>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val item = mList[position]
-
-
-        //bind data here
+        holder.bind(position)
 
         holder.itemView.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -29,11 +48,21 @@ class ContentRecyclerAdapter(private val mList: List<Long>) :
         )
     }
 
-    override fun getItemCount() = mList.size
+    inner class ViewHolder(private val binding: ItemStorageBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    class ViewHolder(binding: ItemStorageBinding) : RecyclerView.ViewHolder(binding.root) {
-        val nameTv = binding.nameTv
-        val dateTv = binding.dateTv
-        val itemsCountTv = binding.itemsCountTv
+        fun bind(position: Int) {
+            val item = getItem(position)
+
+            Log.d("myapplog", "bind")
+
+            binding.nameTv.text = item.name
+            /*binding.itemsCountTv.text = item.itemsCount
+            binding.dateTv.text = item.dateAdded
+
+            Glide.with(itemView.context)
+                .load(item.data)
+                .into(binding.img)*/
+        }
     }
 }

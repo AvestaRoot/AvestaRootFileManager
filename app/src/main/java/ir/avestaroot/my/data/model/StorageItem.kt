@@ -1,4 +1,4 @@
-package ir.avestaroot.my.model
+package ir.avestaroot.my.data.model
 
 
 data class StorageItem(
