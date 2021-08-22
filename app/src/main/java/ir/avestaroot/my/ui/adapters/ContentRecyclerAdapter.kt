@@ -17,7 +17,7 @@ class ContentRecyclerAdapter() :
 
             object : DiffUtil.ItemCallback<ContentItem>() {
                 override fun areItemsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
-                    return oldItem.name == newItem.name
+                    return oldItem.title == newItem.title
                 }
 
                 override fun areContentsTheSame(
@@ -56,7 +56,7 @@ class ContentRecyclerAdapter() :
 
             Log.d("myapplog", "bind")
 
-            binding.nameTv.text = item.name
+            binding.nameTv.text = item.title
             /*binding.itemsCountTv.text = item.itemsCount
             binding.dateTv.text = item.dateAdded
 
