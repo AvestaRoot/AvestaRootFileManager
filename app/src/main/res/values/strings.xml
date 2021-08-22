@@ -20,4 +20,15 @@
     <string name="downloads">Downloads</string>
     <string name="installationsFiles">InstallationsFiles</string>
     <string name="back">Back</string>
+    <string name="jpg">JPG</string>
+    <string name="file_types">File types</string>
+    <string name="mp3">MP3</string>
+    <string name="mp4">MP4</string>
+    <string name="doc">DOC</string>
+    <string name="pdf">PDF</string>
+    <string name="android">Android</string>
+    <string name="date">19 Agu 17:45</string>
+    <string name="items">1 items</string>
+    <string name="recent_searches">Recent searches</string>
+    <string name="clear_search_history">Clear search history</string>
 </resources>

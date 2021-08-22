@@ -17,9 +17,9 @@ class BackButtonSearchView @JvmOverloads constructor(
     private lateinit var backButtonClickListener: BackButtonClickListener
 
     init {
-        binding.toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
-                R.id.back -> {
+        binding.toolbar.setOnClickListener {
+            when(it.id) {
+                R.id.toolbar -> {
                     if (this::backButtonClickListener.isInitialized)
                         this.backButtonClickListener.onBackButtonClicked()
                 }
