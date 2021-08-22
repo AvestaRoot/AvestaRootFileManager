@@ -14,4 +14,8 @@ class MainViewModel : ViewModel() {
     fun onCurrentFragmentChange(fragment: FragmentNavigator.Fragments) {
         _currentFragment.value = fragment
     }
+
+    fun getContentsList(): List<Long> {
+        return listOf()
+    }
 }

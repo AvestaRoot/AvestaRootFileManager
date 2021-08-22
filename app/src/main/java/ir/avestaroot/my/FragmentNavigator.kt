@@ -2,6 +2,7 @@ package ir.avestaroot.my
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import ir.avestaroot.my.ui.fragments.content.ContentFragment
 
 class FragmentNavigator(
     private val supportFragmentManager: FragmentManager,
