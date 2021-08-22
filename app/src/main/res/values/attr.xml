@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="ActivityMainStorageItemLayout">
+    <declare-styleable name="CustomView">
 
-        <attr name="title" format="string"/>
         <attr name="icon" format="reference"/>
+        <attr name="title" format="string"/>
+        <attr name="size" format="string"/>
 
     </declare-styleable>
 

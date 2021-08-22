@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ir.avestaroot.my.CustomView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:title="This is the title"
+        app:icon="@drawable/ic_home_folder"
+        app:size="This is the size"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/cv"
+        android:paddingStart="25dp"
+        tools:ignore="RtlSymmetry" />
+
+</RelativeLayout>
