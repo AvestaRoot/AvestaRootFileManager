@@ -14,6 +14,7 @@ class FragmentNavigator(
         supportFragmentManager
             .beginTransaction()
             .replace(container, fragment.fragment)
+            .addToBackStack(null)
             .commit()
     }
 
@@ -24,6 +25,6 @@ class FragmentNavigator(
         Audio(ContentFragment.newInstance()),
         Documents(ContentFragment.newInstance()),
         Downloads(ContentFragment.newInstance()),
-        Installations(ContentFragment.newInstance())
+        InstallationsFiles(ContentFragment.newInstance())
     }
 }

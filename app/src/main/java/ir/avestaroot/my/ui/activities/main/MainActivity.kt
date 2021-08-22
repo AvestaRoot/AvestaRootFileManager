@@ -12,6 +12,7 @@ import ir.avestaroot.my.R
 import ir.avestaroot.my.databinding.ActivityMainBinding
 import ir.avestaroot.my.ui.activities.search.SearchActivity
 import ir.avestaroot.my.util.FragmentNavigator
+import kotlinx.coroutines.flow.collect
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +26,13 @@ class MainActivity : AppCompatActivity() {
 
         //listeners and observers
         viewModel.currentFragment.observe(this, currentFragmentChanged)
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1)
+            super.onBackPressed()
+        else
+            finish()
     }
 
     private val currentFragmentChanged = Observer<FragmentNavigator.Fragments> {

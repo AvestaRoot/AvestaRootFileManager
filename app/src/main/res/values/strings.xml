@@ -23,4 +23,5 @@
     <string name="android">Android</string>
     <string name="date">19 Agu 17:45</string>
     <string name="items">1 items</string>
+    <string name="permission_denied">Permission Denied!</string>
 </resources>

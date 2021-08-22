@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ir.avestaroot.my.databinding.MainActivityMediaViewholderBinding
 import ir.avestaroot.my.databinding.MainActivityStorageViewholderBinding
-import ir.avestaroot.my.model.StorageItem
+import ir.avestaroot.my.data.model.StorageItem
 import ir.avestaroot.my.ui.fragments.MainFragment
 
 class MainActivityRecyclerAdapter(

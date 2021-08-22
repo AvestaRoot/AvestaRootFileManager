@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ir.avestaroot.my.CustomView
-        android:id="@+id/cv"
+    <ir.avestaroot.my.ui.custom.CustomView
+        android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:icon="@drawable/ic_home_folder"
@@ -18,8 +18,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/cv"
-        android:paddingStart="25dp"
+        android:layout_below="@id/topbar"
         tools:ignore="RtlSymmetry" />
 
 </RelativeLayout>

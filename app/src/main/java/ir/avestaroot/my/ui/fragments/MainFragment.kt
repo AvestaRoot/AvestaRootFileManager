@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.avestaroot.my.R
 import ir.avestaroot.my.databinding.FragmentMainBinding
-import ir.avestaroot.my.model.StorageItem
+import ir.avestaroot.my.data.model.StorageItem
 import ir.avestaroot.my.ui.activities.main.MainViewModel
 import ir.avestaroot.my.ui.adapters.MainActivityRecyclerAdapter
 import ir.avestaroot.my.ui.custom.SpaceItemDecoration
@@ -37,7 +38,7 @@ class MainFragment : Fragment(), MainActivityRecyclerAdapter.OnItemClickListener
             )
         )
     }
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +46,16 @@ class MainFragment : Fragment(), MainActivityRecyclerAdapter.OnItemClickListener
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+
         initMediasRecyclerView()
         initStorageRecyclerView()
-
-        return binding.root
     }
 
     private fun initMediasRecyclerView() {
@@ -74,6 +81,8 @@ class MainFragment : Fragment(), MainActivityRecyclerAdapter.OnItemClickListener
         //the line below need to be modified when storagesRecyclerAdapter changed
         if (isMedia)
             mainViewModel.onCurrentFragmentChange(FragmentNavigator.Fragments.valueOf((item as Medias).name))
+        else
+            Toast.makeText(requireContext(), "is not media", Toast.LENGTH_SHORT).show()
     }
 
     enum class Medias(val nameRes: Int, val iconRes: Int) {
@@ -86,14 +95,6 @@ class MainFragment : Fragment(), MainActivityRecyclerAdapter.OnItemClickListener
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
         @JvmStatic
         fun newInstance() = MainFragment()
     }
