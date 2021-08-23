@@ -1,7 +1,9 @@
 package ir.avestaroot.my.util
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import ir.avestaroot.my.ui.fragments.MainFragment
 import ir.avestaroot.my.ui.fragments.content.ContentFragment
 
@@ -14,7 +16,8 @@ class FragmentNavigator(
         supportFragmentManager
             .beginTransaction()
             .replace(container, fragment.fragment)
-            .addToBackStack(null)
+            .addToBackStack(fragment.name)
+            .setReorderingAllowed(true)
             .commit()
     }
 

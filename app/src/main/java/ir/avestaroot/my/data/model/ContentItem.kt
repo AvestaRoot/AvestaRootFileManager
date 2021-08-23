@@ -1,19 +1,20 @@
 package ir.avestaroot.my.data.model
 
+import android.graphics.Bitmap
+
 class ContentItem(
     val title: String = "",
-    val data: String = "",
-    val dateAdded: String = "",
-    val size_count: String = ""
+    val uri: String = "",
+    val size: Float = 0f,
+    val thumbnail: Bitmap? = null
 ) {
 
     override fun equals(other: Any?): Boolean {
         val other = other as ContentItem
 
-        return this.dateAdded == other.dateAdded &&
-                this.title == other.title &&
-                this.data == other.data &&
-                this.size_count == other.size_count
+        return this.title == other.title &&
+                this.uri == other.uri &&
+                this.size == other.size
     }
 
 }

@@ -38,6 +38,7 @@ class MainFragment : Fragment(), MainActivityRecyclerAdapter.OnItemClickListener
             )
         )
     }
+
     private lateinit var mainViewModel: MainViewModel
 
     override fun onCreateView(
@@ -80,7 +81,7 @@ class MainFragment : Fragment(), MainActivityRecyclerAdapter.OnItemClickListener
     override fun onRecyclerItemClicked(isMedia: Boolean, item: Any) {
         //the line below need to be modified when storagesRecyclerAdapter changed
         if (isMedia)
-            mainViewModel.onCurrentFragmentChange(FragmentNavigator.Fragments.valueOf((item as Medias).name))
+            mainViewModel.onCurrentFragmentChange((item as Medias).name)
         else
             Toast.makeText(requireContext(), "is not media", Toast.LENGTH_SHORT).show()
     }

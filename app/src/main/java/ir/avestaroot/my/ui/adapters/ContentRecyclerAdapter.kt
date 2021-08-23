@@ -17,7 +17,7 @@ class ContentRecyclerAdapter() :
 
             object : DiffUtil.ItemCallback<ContentItem>() {
                 override fun areItemsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
-                    return oldItem.name == newItem.name
+                    return oldItem.title == newItem.title
                 }
 
                 override fun areContentsTheSame(
@@ -54,15 +54,14 @@ class ContentRecyclerAdapter() :
         fun bind(position: Int) {
             val item = getItem(position)
 
-            Log.d("myapplog", "bind")
-
-            binding.nameTv.text = item.name
+            binding.nameTv.text = item.title
             /*binding.itemsCountTv.text = item.itemsCount
             binding.dateTv.text = item.dateAdded
+             */
 
             Glide.with(itemView.context)
-                .load(item.data)
-                .into(binding.img)*/
+                .load(item.thumbnail)
+                .into(binding.img)
         }
     }
 }

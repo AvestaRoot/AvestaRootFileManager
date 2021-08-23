@@ -14,11 +14,25 @@
         app:size="This is the size"
         app:title="This is the title" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/lightGray"
+        android:layout_below="@id/topbar"/>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:layout_below="@id/topbar"
-        tools:ignore="RtlSymmetry" />
+        android:overScrollMode="never"/>
 
 </RelativeLayout>

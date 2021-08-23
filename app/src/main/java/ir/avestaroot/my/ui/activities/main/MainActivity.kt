@@ -3,10 +3,12 @@ package ir.avestaroot.my.ui.activities.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import ir.avestaroot.my.R
 import ir.avestaroot.my.databinding.ActivityMainBinding
@@ -29,14 +31,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 1)
-            super.onBackPressed()
-        else
-            finish()
+        if (supportFragmentManager.backStackEntryCount > 0)
+            supportFragmentManager.popBackStack()
     }
 
-    private val currentFragmentChanged = Observer<FragmentNavigator.Fragments> {
-        fragmentNavigator.navigateTo(it)
+    private val currentFragmentChanged = Observer<String> {
+
+//        supportFragmentManager.popBackStack(it, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        var found = false
+        for (i in 0 until supportFragmentManager.backStackEntryCount) {
+            val name = supportFragmentManager.getBackStackEntryAt(i).name
+            Log.d("myapplog", "Name : $name")
+
+            if (name == it) {
+                found = true
+                break
+            }
+        }
+        if (found)
+            Log.d("myapplog", "yes")
+        else
+            Log.d("myapplog", "no")
+
+        fragmentNavigator.navigateTo(FragmentNavigator.Fragments.valueOf(it))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
