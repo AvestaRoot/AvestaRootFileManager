@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ir.avestaroot.my.ui.custom.CustomView
         android:id="@+id/topbar"
         android:layout_width="match_parent"
@@ -19,6 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/topbar"
+        android:layout_above="@id/navigationItem"
         tools:ignore="RtlSymmetry" />
 
+    <ir.avestaroot.my.ui.custom.navigationItem
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/navigationItem"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

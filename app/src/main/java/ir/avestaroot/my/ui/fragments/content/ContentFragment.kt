@@ -1,13 +1,17 @@
 package ir.avestaroot.my.ui.fragments.content
 
 import android.Manifest
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isGone
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,8 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ir.avestaroot.my.R
 import ir.avestaroot.my.data.model.ContentItem
 import ir.avestaroot.my.databinding.FragmentContentBinding
+import ir.avestaroot.my.databinding.NavigationItemMenuBinding
 import ir.avestaroot.my.ui.adapters.ContentRecyclerAdapter
 import ir.avestaroot.my.ui.activities.main.MainViewModel
+import ir.avestaroot.my.ui.custom.navigationItem
 import ir.avestaroot.my.util.mToast
 
 
