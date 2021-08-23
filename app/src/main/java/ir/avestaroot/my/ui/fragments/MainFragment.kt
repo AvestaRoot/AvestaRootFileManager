@@ -92,7 +92,7 @@ class MainFragment : Fragment(), MainActivityRecyclerAdapter.OnItemClickListener
         Audio(R.string.audio, R.drawable.audio),
         Documents(R.string.documents, R.drawable.document),
         Downloads(R.string.downloads, R.drawable.download),
-        Installations(R.string.installationsFiles, R.drawable.installation_files),
+        InstallationsFiles(R.string.installationsFiles, R.drawable.installation_files),
     }
 
     companion object {

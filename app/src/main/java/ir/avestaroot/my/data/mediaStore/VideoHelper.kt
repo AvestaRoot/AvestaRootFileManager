@@ -41,13 +41,4 @@ class VideoHelper(resolver: ContentResolver) : MediaStore(resolver) {
             title = cursor.getString(cursor.getColumnIndex(DISPLAY_NAME)) ?: return null
         )
     }
-
-    companion object {
-
-        fun getVideoThumbnailByUri(uri: String) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-            ThumbnailUtils.createVideoThumbnail(File(uri), Size(100, 100), null)
-        else
-            ThumbnailUtils.createVideoThumbnail(uri, android.provider.MediaStore.Images.Thumbnails.MINI_KIND)
-
-    }
 }

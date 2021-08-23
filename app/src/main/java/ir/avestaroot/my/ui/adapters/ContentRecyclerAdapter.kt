@@ -1,5 +1,6 @@
 package ir.avestaroot.my.ui.adapters
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
@@ -9,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ir.avestaroot.my.data.mediaStore.AudioHelper
 import ir.avestaroot.my.data.mediaStore.MediaStoreHelper
-import ir.avestaroot.my.data.mediaStore.VideoHelper
+import ir.avestaroot.my.util.FragmentNavigator.Fragments.Audio
+import ir.avestaroot.my.util.FragmentNavigator.Fragments.Videos
 import ir.avestaroot.my.data.model.ContentItem
 import ir.avestaroot.my.databinding.ItemContentBinding
 import ir.avestaroot.my.util.FragmentNavigator
@@ -65,9 +67,10 @@ class ContentRecyclerAdapter(private val dataType: FragmentNavigator.Fragments) 
             binding.nameTv.text = item.title
 
             CoroutineScope(Dispatchers.IO).launch {
-                val thumbnail = when(dataType) {
-                    FragmentNavigator.Fragments.Videos -> VideoHelper.getVideoThumbnailByUri(MediaStoreHelper(context.contentResolver).getUriFromId(item.id) ?: "")
-                    FragmentNavigator.Fragments.Audio -> AudioHelper.getAudioThumbnailByUri(MediaStoreHelper(context.contentResolver).getUriFromId(item.id) ?: "")
+                val thumbnail = when (dataType) {
+                    Audio -> AudioHelper.getAudioThumbnailByUri(
+                        MediaStoreHelper(context.contentResolver).getUriFromId(item.id) ?: ""
+                    )
 
                     //this branch will be never used
                     else -> null
@@ -75,7 +78,11 @@ class ContentRecyclerAdapter(private val dataType: FragmentNavigator.Fragments) 
 
                 withContext(Dispatchers.Main) {
                     Glide.with(context)
-                        .load(thumbnail)
+                        .load(if (dataType == Videos)
+                            MediaStoreHelper(binding.root.context.contentResolver).getUriFromId(item.id)
+                        else
+                            thumbnail
+                            )
                         .into(binding.img)
                 }
             }
