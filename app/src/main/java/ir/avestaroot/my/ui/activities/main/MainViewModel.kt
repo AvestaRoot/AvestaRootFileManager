@@ -17,15 +17,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val contentsList: LiveData<Event<ArrayList<ContentItem>>>
         get() = _contentsList
 
-    private val _currentFragment = MutableLiveData<String>()
-    val currentFragment: LiveData<String>
+    private val _currentFragment = MutableLiveData<FragmentNavigator.Fragments>()
+    val currentFragment: LiveData<FragmentNavigator.Fragments>
         get() = _currentFragment
 
     private val _loadingState = MutableLiveData<Event<LoadingState>>()
     val loadingState: LiveData<Event<LoadingState>>
         get() = _loadingState
 
-    fun onCurrentFragmentChange(fragment: String) {
+    fun onCurrentFragmentChange(fragment: FragmentNavigator.Fragments) {
         _currentFragment.value = fragment
     }
 
@@ -35,7 +35,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadContents() {
         viewModelScope.launch {
-            val contents = mediaStoreHelper.getContents(FragmentNavigator.Fragments.valueOf(_currentFragment.value ?: ""))
+            val contents = mediaStoreHelper.getContents(_currentFragment.value!!)
 
             _contentsList.postValue(Event(contents))
         }

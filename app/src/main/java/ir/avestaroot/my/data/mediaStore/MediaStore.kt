@@ -3,7 +3,15 @@ package ir.avestaroot.my.data.mediaStore
 import android.content.ContentResolver
 import android.database.Cursor
 import android.net.Uri
+import ir.avestaroot.my.data.mediaStore.MSConstants.DATA
+import ir.avestaroot.my.data.mediaStore.MSConstants.DATE_ADDED
 import ir.avestaroot.my.data.model.ContentItem
+import ir.avestaroot.my.data.mediaStore.MSConstants.ID
+import ir.avestaroot.my.data.mediaStore.MSConstants.URI
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.RuntimeException
 
 abstract class MediaStore(private val resolver: ContentResolver) {
@@ -21,7 +29,9 @@ abstract class MediaStore(private val resolver: ContentResolver) {
             separator = " = ? OR ",
             postfix = " = ?"
         ),
-        getSelection().map {
+
+        getSelection().map
+        {
             it.second
         }.toTypedArray(),
         "${getSortOrder()} DESC"
@@ -31,14 +41,18 @@ abstract class MediaStore(private val resolver: ContentResolver) {
         val result = ArrayList<ContentItem>()
         val cursor = getCursor()
 
-        while (cursor?.moveToNext() ?: throw RuntimeException("Cursor in MediaStore class is null")) {
+        while (cursor?.moveToNext()
+                ?: throw RuntimeException("Cursor in MediaStore class is null")
+        ) {
             val item = getItem(cursor)
 
-            result.add(item)
+            item?.let {
+                result.add(it)
+            }
         }
 
         return result
     }
 
-    abstract fun getItem(cursor: Cursor): ContentItem
+    abstract fun getItem(cursor: Cursor): ContentItem?
 }

@@ -1,6 +1,5 @@
 package ir.avestaroot.my.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
@@ -8,16 +7,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ir.avestaroot.my.data.mediaStore.AudioHelper
+import ir.avestaroot.my.data.mediaStore.MediaStoreHelper
+import ir.avestaroot.my.data.mediaStore.VideoHelper
 import ir.avestaroot.my.data.model.ContentItem
-import ir.avestaroot.my.databinding.ItemStorageBinding
+import ir.avestaroot.my.databinding.ItemContentBinding
+import ir.avestaroot.my.util.FragmentNavigator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class ContentRecyclerAdapter() :
+class ContentRecyclerAdapter(private val dataType: FragmentNavigator.Fragments) :
     ListAdapter<ContentItem, ContentRecyclerAdapter.ViewHolder>(
         AsyncDifferConfig.Builder(
 
             object : DiffUtil.ItemCallback<ContentItem>() {
                 override fun areItemsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
-                    return oldItem.title == newItem.title
+                    return oldItem.id == newItem.id
                 }
 
                 override fun areContentsTheSame(
@@ -35,7 +42,7 @@ class ContentRecyclerAdapter() :
 
         val inflater = LayoutInflater.from(parent.context)
 
-        return ViewHolder(ItemStorageBinding.inflate(inflater, parent, false))
+        return ViewHolder(ItemContentBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -48,20 +55,30 @@ class ContentRecyclerAdapter() :
         )
     }
 
-    inner class ViewHolder(private val binding: ItemStorageBinding) :
+    inner class ViewHolder(private val binding: ItemContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
             val item = getItem(position)
+            val context = binding.root.context
 
             binding.nameTv.text = item.title
-            /*binding.itemsCountTv.text = item.itemsCount
-            binding.dateTv.text = item.dateAdded
-             */
 
-            Glide.with(itemView.context)
-                .load(item.thumbnail)
-                .into(binding.img)
+            CoroutineScope(Dispatchers.IO).launch {
+                val thumbnail = when(dataType) {
+                    FragmentNavigator.Fragments.Videos -> VideoHelper.getVideoThumbnailByUri(MediaStoreHelper(context.contentResolver).getUriFromId(item.id) ?: "")
+                    FragmentNavigator.Fragments.Audio -> AudioHelper.getAudioThumbnailByUri(MediaStoreHelper(context.contentResolver).getUriFromId(item.id) ?: "")
+
+                    //this branch will be never used
+                    else -> null
+                }
+
+                withContext(Dispatchers.Main) {
+                    Glide.with(context)
+                        .load(thumbnail)
+                        .into(binding.img)
+                }
+            }
         }
     }
 }

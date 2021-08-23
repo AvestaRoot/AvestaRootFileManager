@@ -23,12 +23,11 @@ import ir.avestaroot.my.util.beGone
 import ir.avestaroot.my.util.beVisible
 import ir.avestaroot.my.util.mToast
 
-
 class ContentFragment : Fragment() {
 
     private lateinit var binding: FragmentContentBinding
     private lateinit var mainViewModel: MainViewModel
-    private val contentRecyclerAdapter by lazy { ContentRecyclerAdapter() }
+    private val contentRecyclerAdapter by lazy { ContentRecyclerAdapter(mainViewModel.currentFragment.value!!) }
     private val readExternalStorageLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
         ActivityResultCallback {
@@ -76,11 +75,10 @@ class ContentFragment : Fragment() {
     private val contentsListChanged = EventObserver<ArrayList<ContentItem>> { contents ->
         mainViewModel.onLoadingChanged(LoadingState.Finished)
         contentRecyclerAdapter.submitList(contents)
-        Log.d("myapplog", "changed")
     }
 
     private fun setTopBarValues() {
-        binding.topbar.title = mainViewModel.currentFragment.value ?: ""
+        binding.topbar.title = mainViewModel.currentFragment.value?.name ?: ""
         binding.topbar.size = "This is a test size"
     }
 

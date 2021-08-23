@@ -35,11 +35,9 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.popBackStack()
     }
 
-    private val currentFragmentChanged = Observer<String> {
+    private val currentFragmentChanged = Observer<FragmentNavigator.Fragments> {
 
-//        supportFragmentManager.popBackStack(it, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-        var found = false
+        /*var found = false
         for (i in 0 until supportFragmentManager.backStackEntryCount) {
             val name = supportFragmentManager.getBackStackEntryAt(i).name
             Log.d("myapplog", "Name : $name")
@@ -52,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         if (found)
             Log.d("myapplog", "yes")
         else
-            Log.d("myapplog", "no")
+            Log.d("myapplog", "no")*/
 
-        fragmentNavigator.navigateTo(FragmentNavigator.Fragments.valueOf(it))
+        fragmentNavigator.navigateTo(it)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
