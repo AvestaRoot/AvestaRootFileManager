@@ -2,6 +2,8 @@ package ir.avestaroot.my.ui.fragments.content
 
 import android.Manifest
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ir.avestaroot.my.R
 import ir.avestaroot.my.data.model.ContentItem
 import ir.avestaroot.my.data.model.LoadingState
-import ir.avestaroot.my.data.model.event.Event
 import ir.avestaroot.my.data.model.event.EventObserver
 import ir.avestaroot.my.databinding.FragmentContentBinding
-import ir.avestaroot.my.ui.adapters.ContentRecyclerAdapter
 import ir.avestaroot.my.ui.activities.main.MainViewModel
+import ir.avestaroot.my.ui.adapters.ContentRecyclerAdapter
 import ir.avestaroot.my.util.beGone
 import ir.avestaroot.my.util.beVisible
 import ir.avestaroot.my.util.mToast
@@ -60,13 +61,21 @@ class ContentFragment : Fragment() {
 
         readExternalStorageLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
 
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.bottomOptionsBar.open()
+        }, 2000)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.bottomOptionsBar.close()
+        }, 5000)
+
         //listeners and observers
         mainViewModel.contentsList.observe(viewLifecycleOwner, contentsListChanged)
         mainViewModel.loadingState.observe(viewLifecycleOwner, loadingStateChanged)
     }
 
-    private val loadingStateChanged = EventObserver<LoadingState> {state ->
-        when(state) {
+    private val loadingStateChanged = EventObserver<LoadingState> { state ->
+        when (state) {
             LoadingState.Started -> binding.progressbar.beVisible()
             LoadingState.Finished -> binding.progressbar.beGone()
         }

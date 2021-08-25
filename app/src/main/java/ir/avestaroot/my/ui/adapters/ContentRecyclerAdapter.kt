@@ -15,6 +15,7 @@ import ir.avestaroot.my.util.FragmentNavigator.Fragments.Videos
 import ir.avestaroot.my.data.model.ContentItem
 import ir.avestaroot.my.databinding.ItemContentBinding
 import ir.avestaroot.my.util.FragmentNavigator
+import ir.avestaroot.my.util.loadByGlide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -77,13 +78,13 @@ class ContentRecyclerAdapter(private val dataType: FragmentNavigator.Fragments) 
                 }
 
                 withContext(Dispatchers.Main) {
-                    Glide.with(context)
-                        .load(if (dataType == Videos)
-                            MediaStoreHelper(binding.root.context.contentResolver).getUriFromId(item.id)
-                        else
-                            thumbnail
-                            )
-                        .into(binding.img)
+                    if (dataType == Videos) {
+                        binding.img.loadByGlide(MediaStoreHelper(binding.root.context.contentResolver).getUriFromId(item.id))
+                    } else {
+
+                        binding.img.setImageBitmap(thumbnail)
+
+                    }
                 }
             }
         }

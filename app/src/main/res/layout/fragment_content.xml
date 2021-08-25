@@ -17,15 +17,15 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:background="@color/lightGray"
-        android:layout_below="@id/topbar"/>
+        android:layout_below="@id/topbar"
+        android:background="@color/lightGray" />
 
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -34,9 +34,9 @@
         android:layout_below="@id/topbar"
         tools:ignore="RtlSymmetry" />
 
-    <ir.avestaroot.my.ui.custom.navigationItem
+    <ir.avestaroot.my.ui.custom.FragmentContentOptionsBottomBar
+        android:id="@+id/bottomOptionsBar"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/navigationItem"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

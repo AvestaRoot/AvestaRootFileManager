@@ -1,9 +1,11 @@
 package ir.avestaroot.my.util
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import com.bumptech.glide.Glide
 import ir.avestaroot.my.data.model.ContentItem
 import ir.avestaroot.my.data.model.event.Event
 
@@ -16,4 +18,14 @@ fun View.beVisible() {
 
 fun View.beGone() {
     this.visibility = View.GONE
+}
+
+fun View.beInvisible() {
+    this.visibility = View.INVISIBLE
+}
+
+fun ImageView.loadByGlide(model: Any?) {
+    Glide.with(context)
+        .load(model)
+        .into(this)
 }

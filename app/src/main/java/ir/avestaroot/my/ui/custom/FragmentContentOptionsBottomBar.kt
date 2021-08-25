@@ -3,34 +3,38 @@ package ir.avestaroot.my.ui.custom
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.Toast
 import ir.avestaroot.my.R
 import ir.avestaroot.my.databinding.FragmentContentBinding
-import ir.avestaroot.my.databinding.NavigationItemMenuBinding
+import ir.avestaroot.my.databinding.FragmentContentOptionsBottombarBinding
+import ir.avestaroot.my.util.beGone
+import ir.avestaroot.my.util.beInvisible
+import ir.avestaroot.my.util.beVisible
 
-class navigationItem @JvmOverloads constructor(
+class FragmentContentOptionsBottomBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
 
     private val binding by lazy {
-        NavigationItemMenuBinding.inflate(
-            LayoutInflater.from(context),
-            this,
-            true
-        )
-    }
-    private val bindingFragment by lazy {
-        FragmentContentBinding.inflate(
+        FragmentContentOptionsBottombarBinding.inflate(
             LayoutInflater.from(context),
             this,
             true
         )
     }
 
+    enum class Items {
+        Copy,
+        Move,
+        Details,
+        Delete,
+        Share,
+    }
 
     init {
         binding.Copy.setOnClickListener {
@@ -50,21 +54,21 @@ class navigationItem @JvmOverloads constructor(
         }
     }
 
-    fun setOpenNavigationBar() {
+    fun open() {
 
 
-            val animation = AnimationUtils.loadAnimation(context, R.anim.drop)
-            bindingFragment.navigationItem.startAnimation(animation)
-
+        binding.root.beVisible()
+        val animation = AnimationUtils.loadAnimation(context, R.anim.drop)
+        binding.root.startAnimation(animation)
 
 
     }
 
-    fun setCloseNavigationBar() {
+    fun close() {
 
-
-            val animation = AnimationUtils.loadAnimation(context, R.anim.slide_down)
-            bindingFragment.navigationItem.startAnimation(animation)
+        binding.root.beInvisible()
+        val animation = AnimationUtils.loadAnimation(context, R.anim.slide_down)
+        binding.root.startAnimation(animation)
 
     }
 }
