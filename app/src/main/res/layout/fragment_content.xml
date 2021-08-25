@@ -31,8 +31,12 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
         android:layout_below="@id/topbar"
-        android:overScrollMode="never"/>
+        tools:ignore="RtlSymmetry" />
 
+    <ir.avestaroot.my.ui.custom.navigationItem
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/navigationItem"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
