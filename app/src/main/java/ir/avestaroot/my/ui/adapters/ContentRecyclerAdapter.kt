@@ -1,14 +1,20 @@
 package ir.avestaroot.my.ui.adapters
 
+import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ir.avestaroot.my.data.model.ContentItem
+import ir.avestaroot.my.data.model.StorageItem
 import ir.avestaroot.my.databinding.ItemStorageBinding
 
 class ContentRecyclerAdapter() :
@@ -30,6 +36,7 @@ class ContentRecyclerAdapter() :
 
         ).build()
     ) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -54,9 +61,21 @@ class ContentRecyclerAdapter() :
         fun bind(position: Int) {
             val item = getItem(position)
 
-            Log.d("myapplog", "bind")
+           // Log.d("myapplog", "bind")
 
             binding.nameTv.text = item.title
+
+            binding.relativeItems.setOnLongClickListener {
+                binding.relativeItems.setSelected(!item.isSelected)
+                binding.relativeItems.setBackgroundColor(if (item.isSelected) Color.WHITE else Color.CYAN)
+
+                true
+            }
+
+            binding.relativeItems.setOnClickListener {
+                binding.relativeItems.setSelected(!item.isSelected)
+                binding.relativeItems.setBackgroundColor(if (item.isSelected) Color.CYAN else Color.WHITE)
+            }
             /*binding.itemsCountTv.text = item.itemsCount
             binding.dateTv.text = item.dateAdded
 

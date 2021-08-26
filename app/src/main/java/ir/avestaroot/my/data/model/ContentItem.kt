@@ -4,7 +4,8 @@ class ContentItem(
     val title: String = "",
     val data: String = "",
     val dateAdded: String = "",
-    val size_count: String = ""
+    val size_count: String = "",
+    val isSelected: Boolean = false
 ) {
 
     override fun equals(other: Any?): Boolean {
@@ -13,7 +14,8 @@ class ContentItem(
         return this.dateAdded == other.dateAdded &&
                 this.title == other.title &&
                 this.data == other.data &&
-                this.size_count == other.size_count
+                this.size_count == other.size_count &&
+                this.isSelected == other.isSelected
     }
 
 }

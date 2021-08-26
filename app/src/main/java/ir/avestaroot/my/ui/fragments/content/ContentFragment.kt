@@ -41,6 +41,21 @@ class ContentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentContentBinding.inflate(inflater, container, false)
+        contentRecyclerAdapter.submitList(listOf(
+            ContentItem(title = "Test1"),
+                ContentItem(title = "Test2"),
+                ContentItem(title = "Test3"),
+                ContentItem(title = "Test4"),
+                ContentItem(title = "Test5"),
+                ContentItem(title = "Test6"),
+                ContentItem(title = "Test8"),
+                ContentItem(title = "Test9"),
+                ContentItem(title = "Test10"),
+                ContentItem(title = "Test11"),
+                ContentItem(title = "Test12"),
+                ContentItem(title = "Test13")
+        ))
+
 
         return binding.root
     }
