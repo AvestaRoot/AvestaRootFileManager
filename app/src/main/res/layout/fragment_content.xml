@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ir.avestaroot.my.ui.custom.CustomView
+    <ir.avestaroot.my.ui.custom.ContentFragmentTopBar
         android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:icon="@drawable/ic_home_folder"
-        app:layout_constraintTop_toTopOf="parent"
-        app:size="This is the size"
-        app:title="This is the title" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <View
         android:layout_width="match_parent"

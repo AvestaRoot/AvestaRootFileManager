@@ -15,25 +15,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <ImageView
-        android:id="@+id/arrowImg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintWidth_percent="0.03"
-        android:src="@drawable/ic_play"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@id/iconImg"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <TextView
-        android:id="@+id/titleTv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/titlesRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toEndOf="@id/arrowImg"
+        app:layout_constraintStart_toEndOf="@id/iconImg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

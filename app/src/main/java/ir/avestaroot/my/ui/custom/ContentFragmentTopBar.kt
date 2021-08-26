@@ -3,11 +3,15 @@ package ir.avestaroot.my.ui.custom
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ir.avestaroot.my.R
+import ir.avestaroot.my.databinding.ContentFragmentTopBarRecyclerViewholderBinding
 import ir.avestaroot.my.databinding.ContentFragmentTopbarBinding
 
-class CustomView @JvmOverloads constructor(
+class ContentFragmentTopBar @JvmOverloads constructor(
     context: Context,
     private val attrs: AttributeSet? = null,
     private val defStyle: Int = 0
@@ -28,14 +32,20 @@ class CustomView @JvmOverloads constructor(
             value?.let { binding.iconImg.setImageResource(it) }
         }
 
-    var title: String = ""
-        set(value) {
-            field = value
+    private val adapter by lazy { ContentFragmentTopBarRecyclerAdapter(titles) }
 
-            binding.titleTv.text = value
-        }
+    var titles = mutableListOf<String>()
 
-    var size: String = ""
+    fun addTitle(title: String) {
+        titles.add(title)
+        adapter.notifyItemInserted(titles.size - 1)
+    }
+    fun back() {
+        titles.removeAt(titles.size - 1)
+        adapter.notifyItemRemoved(titles.size - 1)
+    }
+
+    var count: String = ""
         set(value) {
             field = value
 
@@ -50,7 +60,42 @@ class CustomView @JvmOverloads constructor(
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomView, defStyle, 0)
 
         binding.iconImg.setImageResource(attributes.getResourceId(R.styleable.CustomView_icon, -1))
-        binding.titleTv.text = attributes.getString(R.styleable.CustomView_title)
         binding.sizeTv.text = attributes.getString(R.styleable.CustomView_size)
+        binding.titlesRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.titlesRecycler.adapter = adapter
     }
+}
+
+
+class ContentFragmentTopBarRecyclerAdapter(private val list: MutableList<String>) : RecyclerView.Adapter<ContentFragmentTopBarRecyclerAdapter.ViewHolder>() {
+
+    inner class ViewHolder(private val binding: ContentFragmentTopBarRecyclerViewholderBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(position: Int) {
+            val title = list[position]
+
+            binding.titleTv.text = title
+        }
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ContentFragmentTopBarRecyclerAdapter.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return ViewHolder(ContentFragmentTopBarRecyclerViewholderBinding.inflate(inflater, parent, false))
+    }
+
+    override fun onBindViewHolder(
+        holder: ContentFragmentTopBarRecyclerAdapter.ViewHolder,
+        position: Int
+    ) {
+        holder.bind(position)
+
+        holder.itemView.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+    }
+
+    override fun getItemCount() = list.size
 }

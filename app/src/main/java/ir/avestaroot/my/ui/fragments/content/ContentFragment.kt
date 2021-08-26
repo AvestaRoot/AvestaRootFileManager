@@ -26,6 +26,7 @@ import ir.avestaroot.my.util.mToast
 
 class ContentFragment : Fragment() {
 
+    private var itemsCount = ""
     private lateinit var binding: FragmentContentBinding
     private lateinit var mainViewModel: MainViewModel
     private val contentRecyclerAdapter by lazy { ContentRecyclerAdapter(mainViewModel.currentFragment.value!!) }
@@ -47,6 +48,8 @@ class ContentFragment : Fragment() {
     ): View {
         binding = FragmentContentBinding.inflate(inflater, container, false)
 
+        Log.d("myapplog", "onCreateView")
+
         return binding.root
     }
 
@@ -59,15 +62,9 @@ class ContentFragment : Fragment() {
 
         setTopBarValues()
 
+        binding.topbar.count = itemsCount
+
         readExternalStorageLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.bottomOptionsBar.open()
-        }, 2000)
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.bottomOptionsBar.close()
-        }, 5000)
 
         //listeners and observers
         mainViewModel.contentsList.observe(viewLifecycleOwner, contentsListChanged)
@@ -84,11 +81,12 @@ class ContentFragment : Fragment() {
     private val contentsListChanged = EventObserver<ArrayList<ContentItem>> { contents ->
         mainViewModel.onLoadingChanged(LoadingState.Finished)
         contentRecyclerAdapter.submitList(contents)
+        itemsCount = "${contents.size}"
+        binding.topbar.count = itemsCount
     }
 
     private fun setTopBarValues() {
-        binding.topbar.title = mainViewModel.currentFragment.value?.name ?: ""
-        binding.topbar.size = "This is a test size"
+        binding.topbar.addTitle(mainViewModel.currentFragment.value!!.name)
     }
 
     private fun initContentRecyclerView() {

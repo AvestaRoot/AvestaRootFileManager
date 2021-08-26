@@ -4,7 +4,6 @@
     <declare-styleable name="CustomView">
 
         <attr name="icon" format="reference"/>
-        <attr name="title" format="string"/>
         <attr name="size" format="string"/>
 
     </declare-styleable>
