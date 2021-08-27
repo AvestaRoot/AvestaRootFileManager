@@ -11,13 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
         app:cardCornerRadius="30dp"
-        app:cardElevation="16dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintTop_toTopOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="wrap_content">
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -46,7 +47,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recentFilesRecycler"
                 android:layout_width="match_parent"
@@ -54,6 +54,7 @@
                 android:overScrollMode="never"/>
 
         </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
 
@@ -63,7 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:cardCornerRadius="25dp"
-        app:cardElevation="8dp"
         app:layout_constraintTop_toBottomOf="@id/topCrd">
 
         <LinearLayout
@@ -96,14 +96,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:cardCornerRadius="25dp"
-        app:cardElevation="8dp"
         app:layout_constraintTop_toBottomOf="@id/middleCrd">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/storagesRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:overScrollMode="never" />
 
     </androidx.cardview.widget.CardView>
@@ -123,8 +121,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:backgroundTint="@color/yellow"
         android:paddingHorizontal="16dp"
-        android:text="Storage analysis"
+        android:textAppearance="@string/storageAnalysis"
+        android:text="@string/storageAnalysis"
+        android:textSize="18sp"
         app:cornerRadius="30dp"
         app:icon="@drawable/analysis"
         app:iconSize="24dp"

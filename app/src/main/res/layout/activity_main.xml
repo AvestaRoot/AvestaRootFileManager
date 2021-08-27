@@ -14,6 +14,7 @@
     <ir.avestaroot.my.ui.custom.MainTopBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:id="@+id/selectedItem"/>
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frag"
